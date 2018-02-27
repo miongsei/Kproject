@@ -1,0 +1,1471 @@
+---
+title: "inequal"
+author: "강명세"
+date: '2017 11 16 '
+output:
+  pdf_document: default
+  html_document: default
+mainfont: NanumGothic  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+세 집단 분류
+ q1, q2, q3
+## AU, AT
+```{r}
+#rm(list = ls())
+#load("~/Dropbox/now/ZS5890")
+#au<-subset(ZS5890R, country=="AU-Australia")
+#table(au$AU_RIN87)
+#au87<-subset(au, V4==1987);au99<-subset(au, V4==1999);au92<-subset(au, V4==1992);au09<-subset(au, V4==2009)
+
+au87$qr3<-cut(au87$AU_RIN87, quantile(au87$AU_RIN87, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(au87$qr3) <- c("q1","q2","q3")	
+table(au87$qr3)
+
+au92$qr3<-cut(au92$AU_RIN92, quantile(au92$AU_RIN92, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(au92$qr3) <- c("q1","q2","q3")#	
+table(au92$qr3)
+
+au99$qr3<-cut(au99$AU_RIN99, quantile(au99$AU_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(au99$qr3) <- c("q1","q2","q3")#	
+table(au99$qr3)
+
+au09$qr3<-cut(au09$AU_RIN09, quantile(au09$AU_RIN09,c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(au09$qr3) <- c("q1","q2","q3")#	
+table(au09$qr3)
+
+aurinc<-rbind(au87,au92,au99,au09)
+aurinc<-subset(aurinc, select = c(qr,qr3, V3,V4))
+aua<-subset(ZS5890, country=="AU-Australia")
+aua<-subset(aua, V4==1987 | V4==1992 | V4==1999 | V4==2009)
+table(aua$educ)
+table(aua$V4)
+aur<-cbind(aua,aurinc)
+aur<-subset(aur, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR, 
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+class(aur$bincome)
+table(aur$qr3)
+table(aur$qr)
+```
+
+# AT
+```{r echo=FALSE}
+#at<-subset(ZS5890R, country=="AT-Austria")
+#table(at$AT_RIN87)
+#at87<-subset(at, V4==1987);at99<-subset(at, V4==1999);at92<-subset(at, V4==1992);at09<-subset(at, V4==2009)
+at87$qr3<-cut(at87$US_RIN87, quantile(at87$US_RIN87, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(at87$qr3) <- c("q1","q2","q3")#	NA
+table(at87$qr3)
+
+at92$qr3<-cut(at92$AT_RIN92, quantile(at92$AT_RIN92, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(at92$qr3) <- c("q1","q2","q3")#	
+table(at92$qr3)
+
+at99$qr3<-cut(at99$AT_RIN99, quantile(at99$AT_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(at99$qr3) <- c("q1","q2","q3")#	
+table(at99$qr3)
+
+at09$qr3<-cut(at09$AT_RIN09, quantile(at09$AT_RIN09, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(at09$qr3) <- c("q1","q2","q3")#	
+table(at09$qr3)
+
+atrinc<-rbind(at87,at92,at99,at09)
+atrinc<-subset(atrinc, select = c(qr,qr3, V3,V4))
+ata<-subset(ZS5890, country=="AT-Austria")
+ata<-subset(ata, V4==1987 | V4==1992 | V4==1999 | V4==2009)
+table(ata$educ)
+table(ata$V4)
+atr<-cbind(ata,atrinc)
+atr<-subset(aur, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                            reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                            skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR, 
+                            uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+
+table(atr$bincome)
+table(atr$qr3)
+```
+
+# BG
+```{r echo=FALSE}
+#bg<-subset(ZS5890R, country=="BG-Bulgaria")
+#table(bg$BG_RIN92)
+
+#bg92<-subset(bg, V4==1992);bg99<-subset(bg, V4==1999);bg09<-subset(bg, V4==2009)
+#table(bg$BG_RIN99)
+#table(bg99$qr)
+bg92$qr3<-cut(bg92$BG_RIN92, quantile(bg92$BG_RIN92, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(bg92$qr3) <- c("q1","q2","q3")#	
+table(bg92$qr3)
+
+bg99$qr3<-cut(bg99$BG_RIN99, quantile(bg99$BG_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(bg99$qr3) <- c("q1","q2","q3")#	
+table(bg99$qr3)
+
+bg09$qr3<-cut(bg09$BG_RIN09, quantile(bg09$BG_RIN09, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(bg09$qr3) <- c("q1","q2","q3")#	
+table(bg09$qr3)
+
+bgrinc<-rbind(bg92,bg99,bg09)
+bgrinc<-subset(bgrinc, select = c(qr, qr3,V3,V4))
+bga<-subset(ZS5890, country=="BG-Bulgaria")
+bga<-subset(bga, V4==1992 | V4==1999 | V4==2009)
+table(bga$educ)
+table(bga$V4)
+bgr<-cbind(bga,bgrinc)
+bgr<-subset(bgr, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+table(bgr$bincome)
+table(bgr$qr3)
+```
+
+# GB
+```{r echo=FALSE}
+#able(ZS5890R$country)
+#gb<-subset(ZS5890R, country=="United Kingdom (Great Britain only)")
+#gb87<-subset(gb, V4==1987);gb92<-subset(gb, V4==1992);gb99<-subset(gb, V4==1999);gb09<-subset(gb, V4==2009)
+gb87$qr3<-cut(gb87$GB_RIN87, quantile(gb87$GB_RIN87, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(gb87$qr3) <- c("q1","q2","q3")#	
+table(gb87$qr3)
+#table(gb$GB_RIN92)
+gb92$qr3<-cut(gb92$GB_RIN92, quantile(gb92$GB_RIN92, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(gb92$qr3) <- c("q1","q2","q3")#	
+table(gb92$qr3)
+gb99$qr3<-cut(gb99$GB_RIN99, quantile(gb99$GB_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(gb99$qr3) <- c("q1","q2","q3")#	
+table(gb99$qr3)
+
+gbrinc<-rbind(gb87,gb92,gb99)
+gbrinc<-subset(gbrinc, select = c(qr,qr3))
+gbb<-subset(ZS5890, country=="United Kingdom (Great Britain only)")
+gbb<-subset(gbb, V4==1987 | V4==1992 | V4==1999)
+gbr<-cbind(gbrinc,gbb)
+gbr<-subset(gbr, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                            reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                            skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                            uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+#gbb<-gbb[,c(4:5,514:515)]
+table(gbr$qr)
+table(gbr$qr3)
+table(gbr$ubenefit1)
+```
+
+## US
+```{r echo=FALSE}
+#us<-subset(ZS5890R, country=="US-United States")
+#table(us$US_RIN09)
+#us87<-subset(us, V4==1987);us92<-subset(us, V4==1992);us99<-subset(us, V4==1999);us09<-subset(us, V4==2009)
+
+us87$qr3<-cut(us87$US_RIN87, quantile(us87$US_RIN87, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(us87$qr3) <- c("q1","q2","q3")#	
+table(us87$qr3)
+
+us92$qr3<-cut(us92$US_RIN92, quantile(us92$US_RIN92, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(us92$qr3) <- c("q1","q2","q3")#	
+table(us92$qr3)
+
+us99$qr3<-cut(us99$US_RIN99, quantile(us99$US_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(us99$qr3) <- c("q1","q2","q3")#	
+table(us99$qr3)
+
+
+usrinc<-rbind(us87,us92,us99)
+table(usrinc$V4)
+usrinc<-subset(usrinc, select = c(qr,qr3, V3,V4))
+usra<-subset(ZS5890, country=="US-United States")
+usra<-subset(usra, V4==1987 | V4==1992 | V4==1999)
+usr<-cbind(usra,usrinc)
+usr<-subset(usr, select = c(country,V4, qr, partisan,vote, itax, govReduce,EDUCYRS,
+                            reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                            skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                            uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+table(usr$qr3)
+```
+
+
+# Germany
+```{r echo=FALSE}
+
+#de<-subset(ZS5890R, country=="DE-Germany")
+#table(de$DE_RIN09)
+#class(de$DE_RI87a)
+#de87<-subset(de, V4==1987);de92<-subset(de, V4==1992);de99<-subset(de, V4==1999);de09<-subset(de, V4==2009)
+
+#table(de$DE_RI87a)
+de87$qr3<-cut(de87$DE_RI87a, quantile(de87$DE_RI87a, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(de87$qr3) <- c("q1","q2","q3")#	
+table(de87$qr3)
+
+de92$qr3<-cut(de92$DE_RI92a, quantile(de92$DE_RI92a, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(de92$qr3) <- c("q1","q2","q3")#	
+table(de92$qr3)
+
+#table(de$DE_RIN99)
+de99$qr3<-cut(de99$DE_RIN99, quantile(de99$DE_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(de99$qr3) <- c("q1","q2","q3")#	
+table(de99$qr3)
+
+#table(de$DE_RIN09)
+de09$qr3<-cut(de09$DE_RIN09, quantile(de09$DE_RIN09, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(de09$qr3) <- c("q1","q2","q3")#	
+table(de09$qr3)
+
+#de<-rbind(de87,de92,de99,de09)
+derinc<-rbind(de87,de92,de99,de09)
+derinc<-subset(derinc, select = c(qr, qr3, V3,V4))
+deu<-subset(ZS5890, country=="DE-Germany")
+der<-cbind(deu,derinc)
+table(der$qr)
+der<-subset(der, select = c(country,V4, qr, partisan,vote, itax, govReduce,EDUCYRS,
+                            reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                            skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                            uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+table(der$당파성)
+table(der$qr3)
+```
+
+# Sweden
+```{r echo=FALSE}
+#se<-subset(ZS5890R, country=="SE-Sweden")
+#table(se$SE_RIN92)
+#se92<-subset(se, V4==1992);se99<-subset(se, V4==1999);se09<-subset(se, V4==2009)
+
+se92$qr3<-cut(se92$SE_RIN92, quantile(se92$SE_RIN92, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(se92$qr3) <- c("q1","q2","q3")#	
+table(se92$qr3)
+
+
+se99$qr3<-cut(se99$SE_RIN99, quantile(se99$SE_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(se99$qr3) <- c("q1","q2","q3")#	
+table(se99$qr3)
+
+se09$qr3<-cut(se09$SE_RIN09, quantile(se09$SE_RIN09, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(se09$qr3) <- c("q1","q2","q3")#	
+table(se09$qr3)
+
+
+serinc<-rbind(se92,se99,se09)
+serinc<-subset(serinc, select = c(qr, qr3,V3,V4))
+sea<-subset(ZS5890, country=="SE-Sweden")
+table(sea$educ)
+str(sea$V4)
+sea<-subset(sea, V4==1992 | V4==1999 | V4==2009)
+ser<-cbind(sea,serinc)
+#se$vote<-ifelse(se$VOTE_LE==1,1,0)
+ser<-subset(ser, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+table(ser$qr3)
+
+```
+
+# Chile
+```{r echo=FALSE}
+#cl<-subset(ZS5890R, country=="CL-Chile")
+#table(cl$CL_RIN99)
+#cl99<-subset(cl, V4==1999);cl09<-subset(cl, V4==2009)
+
+cl09$qr3<-cut(cl09$CL_RIN09, quantile(cl09$CL_RIN09, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(cl09$qr3) <- c("q1","q2","q3")#	
+table(cl09$qr3)
+
+clrinc<-subset(cl09, select = c(qr,qr3, V3,V4))
+clra<-subset(ZS5890, country=="CL-Chile")
+clra<-subset(clra, V4==2009)
+table(clra$educ)
+table(clra$V4)
+clr<-cbind(clra,clrinc)
+#se$vote<-ifelse(se$VOTE_LE==1,1,0)
+clr<-subset(clr, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+
+```
+
+# Czech
+```{r echo=FALSE}
+#table(ZS5890R$country)
+#cz<-subset(ZS5890R, country=="CZ-Czech Republic")
+#table(cz$CZ_RIN92)
+#cz92<-subset(cz, V4==1992);cz99<-subset(cz, V4==1999);cz09<-subset(cz, V4==2009)
+cz92$qr3<-cut(cz92$CZ_RIN92, quantile(cz92$CZ_RIN92, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(cz92$qr3) <- c("q1","q2","q3")#	
+table(cz92$qr3)
+
+#table(cz$CZ_RIN99)
+cz99$qr3<-cut(cz99$CZ_RIN99, quantile(cz99$CZ_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(cz99$qr3) <- c("q1","q2","q3")#	
+table(cz99$qr3)
+
+cz09$qr3<-cut(cz09$CZ_RIN09, quantile(cz09$CZ_RIN09, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(cz09$qr3) <- c("q1","q2","q3")#	
+table(cz09$qr3)
+
+table(cz99$qr3)
+table(cz09$qr3)
+
+cz<-rbind(cz92,cz99,cz09)
+czrinc<-subset(cz, select = c(qr,qr3, V3,V4))
+cza<-subset(ZS5890, country=="CZ-Czech Republic")
+table(cza$educ)
+table(cza$V4)
+czr<-cbind(cza,czrinc)
+#se$vote<-ifelse(se$VOTE_LE==1,1,0)
+czr<-subset(czr, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+table(czr$qr3)
+```
+
+
+# France
+```{r echo=FALSE}
+#fr<-subset(ZS5890R, country=="FR-France")
+#table(fr$FR_RIN99)
+#fr99<-subset(fr, V4==1999);fr09<-subset(fr, V4==2009)
+
+fr99$qr3<-cut(fr99$FR_RIN99, quantile(fr99$FR_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(fr99$qr3) <- c("q1","q2","q3")#	
+table(fr99$qr3)
+
+
+frrinc<-subset(fr99, select = c(qr,qr3, V3,V4))
+fra<-subset(ZS5890, country=="FR-France" & V4==1999)
+
+frr<-cbind(fra,frrinc)
+#se$vote<-ifelse(se$VOTE_LE==1,1,0)
+frr<-subset(frr, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+table(frr$qr3)
+```
+
+# Hungary
+```{r echo=FALSE}
+#hu<-subset(ZS5890R, country=="HU-Hungary")
+#hu87<-subset(hu, V4==1987);hu92<-subset(hu, V4==1992);hu99<-subset(hu, V4==1999);
+#hu09<-subset(hu, V4==2009)
+#table(hu$HU_RIN87)
+hu87$qr3<-cut(hu87$HU_RIN87, quantile(hu87$HU_RIN87, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(hu87$qr3) <- c("q1","q2","q3")#	
+table(hu87$qr3)
+
+hu92$qr3<-cut(hu92$HU_RIN92, quantile(hu92$HU_RIN92, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(hu92$qr3) <- c("q1","q2","q3")#	
+table(hu92$qr3)
+
+hu99$qr3<-cut(hu99$HU_RIN99, quantile(hu99$HU_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(hu99$qr3) <- c("q1","q2","q3")#	
+table(hu99$qr3)
+
+
+hu09$qr3<-cut(hu09$HU_RIN09, quantile(hu09$HU_RIN09, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(hu09$qr3) <- c("q1","q2","q3")#	
+table(hu09$qr3)
+
+
+
+
+hurinc<-rbind(hu87,hu92,hu99,hu09)
+hurinc<-subset(hurinc, select = c(qr,qr3, V3,V4))
+hua<-subset(ZS5890, country=="HU-Hungary")
+table(hua$educ)
+table(hua$V4)
+hur<-cbind(hua,hurinc)
+#se$vote<-ifelse(se$VOTE_LE==1,1,0)
+hur<-subset(hur, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+table(hur$qr3)
+```
+
+# Italy
+```{r echo=FALSE}
+#it<-subset(ZS5890R, country=="IT-Italy")
+#it87<-subset(it, V4==1987);it92<-subset(it, V4==1992);it09<-subset(it, V4==2009)
+#table(it$IT_RIN87)
+it87$qr3<-cut(it87$IT_RIN87, quantile(it87$IT_RIN87, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(it87$qr3) <- c("q1","q2","q3")#	
+table(it87$qr3)
+
+it92$qr3<-cut(it92$IT_RIN92, quantile(it92$IT_RIN92, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(it92$qr3) <- c("q1","q2","q3")#	
+table(it92$qr3)
+
+it09$qr3<-cut(it09$IT_RIN09, quantile(it09$IT_RIN09, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(it09$qr3) <- c("q1","q2","q3")#	
+table(it09$qr3)
+
+itrinc<-rbind(it87,it92,it09)
+itrinc<-subset(itrinc, select = c(qr,qr3, V3,V4))
+ita<-subset(ZS5890, country=="IT-Italy")
+ita<-subset(ita, V4==1987 | V4==1992 | V4==2009)
+table(ita$V4)
+table(ita$educ)
+itr<-cbind(ita,itrinc)
+#se$vote<-ifelse(se$VOTE_LE==1,1,0)
+itr<-subset(itr, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+table(itr$qr3)
+table(itr$bincome)
+```
+
+# Japan
+```{r echo=FALSE}
+#jp<-subset(ZS5890R, country=="JP-Japan")
+#table(jp$JP_RIN99)
+#jp99<-subset(jp, V4==1999);jp09<-subset(jp, V4==2009)
+
+jp09$qr3<-cut(jp09$JP_RIN09, quantile(jp09$JP_RIN09, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(jp09$qr3) <- c("q1","q2","q3")#	
+table(jp09$qr3)
+
+
+jprinc<-subset(jp09, select = c(qr, qr3,V3,V4))
+jpa<-subset(ZS5890, country=="JP-Japan" & V4==2009)
+table(jpa$educ)
+table(jpa$V4)
+jpr<-cbind(jpa,jprinc)
+#se$vote<-ifelse(se$VOTE_LE==1,1,0)
+jpr<-subset(jpr, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+table(jpr$qr3)
+```
+
+# NZ
+```{r echo=FALSE}
+#nz<-subset(ZS5890R, country=="NZ-New Zealand")
+#table(nz$NZ_RIN92)
+#nz92<-subset(nz, V4==1992);nz99<-subset(nz, V4==1999);nz09<-subset(nz, V4==2009)
+
+nz92$qr3<-cut(nz92$NZ_RIN92, quantile(nz92$NZ_RIN92, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(nz92$qr3) <- c("q1","q2","q3") #	
+table(nz92$qr3)
+
+nz99$qr3<-cut(nz99$NZ_RIN99, quantile(nz99$NZ_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(nz99$qr3) <- c("q1","q2","q3") #	
+table(nz99$qr3)
+
+nz09$qr3<-cut(nz09$NZ_RIN09, quantile(nz09$NZ_RIN09, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(nz09$qr3) <- c("q1","q2","q3") #	
+table(nz09$qr3)
+
+nzrinc<-rbind(nz92,nz99,nz09)
+nzrinc<-subset(nzrinc, select = c(qr,qr3, V3,V4))
+nza<-subset(ZS5890, country=="NZ-New Zealand")
+nza<-subset(nza, V4==1992 | V4==1999 | V4==2009)
+table(nza$educ)
+table(nza$V4)
+nzr<-cbind(nza,nzrinc)
+#se$vote<-ifelse(se$VOTE_LE==1,1,0)
+nzr<-subset(nzr, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+table(nzr$qr3)
+```
+
+# Norway
+```{r echo=FALSE}
+#no<-subset(ZS5890R, country=="NO-Norway")
+#table(no$NO_RIN92)
+#no92<-subset(no, V4==1992);no99<-subset(no, V4==1999);no09<-subset(no, V4==2009)
+
+no92$qr3<-cut(no92$NO_RIN92, quantile(no92$NO_RIN92, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(no92$qr3) <- c("q1","q2","q3")#	
+table(no92$qr3)
+
+no99$qr3<-cut(no99$NO_RIN99, quantile(no99$NO_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(no99$qr3) <- c("q1","q2","q3")#	
+table(no99$qr3)
+
+no09$qr3<-cut(no09$NO_RIN09, quantile(no09$NO_RIN09, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(no09$qr3) <- c("q1","q2","q3")#	
+table(no09$qr3)
+
+norinc<-rbind(no99,no09)
+norinc<-subset(norinc, select = c(qr,qr3, V3,V4))
+noa<-subset(ZS5890, country=="NO-Norway")
+noa<-subset(noa, V4==1999 | V4==2009)
+table(noa$educ)
+table(noa$V4)
+nor<-cbind(noa,norinc)
+#se$vote<-ifelse(se$VOTE_LE==1,1,0)
+nor<-subset(nor, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+table(nor$qr3)
+```
+
+# Phillippines
+```{r echo=FALSE}
+#ph<-subset(ZS5890R, country=="PH-Philippines")
+#table(ph$PH_RIN92)
+#ph92<-subset(ph, V4==1992);ph99<-subset(ph, V4==1999)'ph09<-subset(ph, V4==2009)
+
+ph92$qr3<-cut(ph92$PH_RIN92, quantile(ph92$PH_RIN92, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(ph92$qr3) <- c("q1","q2","q3")#	
+table(ph92$qr3)
+
+ph99$qr3<-cut(ph99$PH_RIN99, quantile(ph99$PH_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(ph99$qr3) <- c("q1","q2","q3")#	
+table(ph99$qr3)
+
+
+phrinc<-rbind(ph92,ph99)
+phrinc<-subset(phrinc, select = c(qr,qr3, V3,V4))
+pha<-subset(ZS5890, country=="PH-Philippines")
+pha<-subset(pha, V4==1992 | V4==1999)
+table(pha$educ)
+table(pha$V4)
+phr<-cbind(pha,phrinc)
+#se$vote<-ifelse(se$VOTE_LE==1,1,0)
+phr<-subset(phr, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+table(phr$qr3)
+```
+
+# Poland
+```{r echo=FALSE}
+#pl<-subset(ZS5890R, country=="PL-Poland")
+#table(pl$PL_RIN87)
+#pl87<-subset(pl, V4==1987);pl92<-subset(pl, V4==1992);pl99<-subset(pl, V4==1999);pl09<-subset(pl, V4==2009)
+
+pl87$qr3<-cut(pl87$PL_RIN87, quantile(pl87$PL_RIN87, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(pl87$qr3) <- c("q1","q2","q3")#	
+table(pl87$qr3)
+
+pl92$qr3<-cut(pl92$PL_RIN92, quantile(pl92$PL_RIN92, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(pl92$qr3) <- c("q1","q2","q3")#	
+table(pl92$qr3)
+
+pl99$qr3<-cut(pl99$PL_RIN99, quantile(pl99$PL_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(pl99$qr3) <- c("q1","q2","q3")#	
+table(pl99$qr3)
+
+
+plrinc<-rbind(pl87,pl92, pl99)
+plrinc<-subset(plrinc, select = c(qr, qr3,V3,V4))
+pla<-subset(ZS5890, country=="PL-Poland")
+pla<-subset(pla, V4==1987 | V4==1992 | V4==1999)
+table(noa$educ)
+table(pla$V4)
+plr<-cbind(pla,plrinc)
+#se$vote<-ifelse(se$VOTE_LE==1,1,0)
+plr<-subset(plr, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+
+```
+
+
+
+# SK
+```{r echo=FALSE}
+#table(ZS5890R$country)
+#sk<-subset(ZS5890R, country=="SK-Slovak Republic")
+#table(sk$SK_RIN92)
+#sk92<-subset(sk, V4==1992);sk99<-subset(sk, V4==1999);sk09<-subset(sk, V4==2009)
+
+sk92$qr3<-cut(sk92$SK_RIN92, quantile(sk92$SK_RIN92, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(sk92$qr3) <- c("q1","q2","q3")#	
+table(sk92$qr3)
+
+sk99$qr3<-cut(sk99$SK_RIN99, quantile(sk99$SK_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(sk99$qr3) <- c("q1","q2","q3")#	
+table(sk99$qr3)
+
+
+sk09$qr3<-cut(sk09$SK_RIN09, quantile(sk09$SK_RIN09, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(sk09$qr3) <- c("q1","q2","q3")#	
+table(sk09$qr3)
+
+table(sk92$qr)
+table(sk99$qr)
+table(sk09$qr)
+
+skrinc<-rbind(sk92,sk99,sk09)
+skrinc<-subset(skrinc, select = c(qr, qr3,V3,V4))
+ska<-subset(ZS5890, country=="SK-Slovak Republic")
+table(ska$educ)
+table(ska$V4)
+skr<-cbind(ska,skrinc)
+#se$vote<-ifelse(se$VOTE_LE==1,1,0)
+skr<-subset(skr, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+```
+
+# Slovenia
+```{r echo=FALSE}
+#si<-subset(ZS5890R, country=="SI-Slovenia")
+#table(si$V4)
+#si92<-subset(si, V4==1992);si99<-subset(si, V4==1999);si09<-subset(si, V4==2009)
+
+si92$qr3<-cut(si92$SI_RIN92, quantile(si92$SI_RIN92, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(si92$qr3) <- c("q1","q2","q3")#	
+table(sk92$qr3)
+
+si99$qr3<-cut(si99$SI_RIN99, quantile(si99$SI_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(si99$qr3) <- c("q1","q2","q3")#	
+table(si99$qr3)
+
+
+si09$qr3<-cut(si09$SI_RIN09, quantile(si09$SI_RIN09, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(si09$qr3) <- c("q1","q2","q3")#	
+table(si09$qr3)
+
+sirinc<-rbind(si92,si99,si09)
+sirinc<-subset(sirinc, select = c(qr,qr3, V3,V4))
+sia<-subset(ZS5890, country=="SI-Slovenia")
+table(sia$educ)
+table(sia$V4)
+sir<-cbind(sia,sirinc)
+#se$vote<-ifelse(se$VOTE_LE==1,1,0)
+sir<-subset(sir, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+```
+
+# Spain
+```{r echo=FALSE}
+#es<-subset(ZS5890R, country=="ES-Spain")
+#table(es$ES_RIN99)
+#es99<-subset(es, V4==1999);es09<-subset(es, V4==2009)
+
+es99$qr3<-cut(es99$ES_RIN99, quantile(es99$ES_RIN99, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(es99$qr3) <- c("q1","q2","q3")#	
+table(es99$qr3)
+
+
+es09$qr3<-cut(es09$ES_RIN09, quantile(es09$ES_RIN09, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(es09$qr3) <- c("q1","q2","q3")#	
+table(es09$qr3)
+
+esrinc<-rbind(es99,es09)
+esrinc<-subset(esrinc, select = c(qr, qr3,V3,V4))
+esa<-subset(ZS5890, country=="ES-Spain")
+esa<-subset(esa, V4==1999 | V4==2009)
+table(esa$educ)
+table(esa$V4)
+esr<-cbind(esa,esrinc)
+#se$vote<-ifelse(se$VOTE_LE==1,1,0)
+esr<-subset(esr, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                            reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                            skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                            uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+```
+
+# Switzerland
+```{r echo=FALSE}
+#ch<-subset(ZS5890R, country=="CH-Switzerland")
+#ch87<-subset(ch, V4==1987);ch09<-subset(ch, V4==2009)
+#table(ch$CH_RIN87)
+ch87$qr3<-cut(ch87$CH_RIN87, quantile(ch87$CH_RIN87, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(ch87$qr3) <- c("q1","q2","q3")#	
+table(ch87$qr3)
+ch09$qr3<-cut(ch09$CH_RIN09, quantile(ch09$CH_RIN09, c(0, 1/3, 2/3, 1),
+                                     na.rm = T))	#specify cut points based on quantiles
+levels(ch09$qr3) <- c("q1","q2","q3")#	
+table(ch09$qr3)
+
+chrinc<-rbind(ch87,ch09)
+chrinc<-subset(ch09, select = c(qr, qr3,V3,V4))
+cha<-subset(ZS5890, country=="CH-Switzerland")
+cha<-subset(cha, V4==2009)
+#table(cha$V4)
+chr<-cbind(cha,chrinc)
+#se$vote<-ifelse(se$VOTE_LE==1,1,0)
+chr<-subset(chr, select = c(country,V4, qr, partisan, vote, itax, govReduce,EDUCYRS,
+                          reduce,poorRich,V33,educ,large,ubenefit,DEGREE,당파성,
+                          skill, AGE,SEX,bincome,family,wmidConf,ubenefit1,qr3, VOTE_LR,
+                          uneEmp, poorAid,occu,botTop,klass,justEdu,topbot,left,MARITAL,class))
+table(chr$qr3)
+
+```
+
+
+```{r}
+rm(list = ls())
+load("~/Dropbox/now/ZS5890")
+save.image("~/Dropbox/book/final/ZS5890")
+allr<-rbind(aur,atr,bgr,kr09a)
+allr<-rbind(aur,atr,bgr,clr,czr,der,frr,hur,itr,jpr,phr,plr,
+            nzr,nor,skr,sir,esr,ser,chr,gbr,usr,kr09a) 
+
+allr$class[allr$class=="No answer"]<-NA
+allr$class[allr$class=="Don't know, can't choose"]<-NA
+allr$class[allr$class=="None of these classes/ classification refused"]<-NA
+allr$class[allr$class=="Variable not available for this country in this module"]<-NA
+allr$class<-with(allr,
+                 ifelse(class=="Lower class/ Poor/ Bottom", "Lower class/ Poor/ Bottom",
+                        ifelse(class=="Working class", "Working class",
+                               ifelse(class=="Lower middle class/ Upper working class/ Medium lower",
+                                      "Lower middle class/ Upper working class/ Medium lower",
+                                      ifelse(class=="Middle class", " Middle class",
+                                             ifelse(class=="Upper middle class","Upper middle class",
+                                                  ifelse(class=="Upper class","Upper class",NA)))))))
+allr$class<-factor(allr$class, 
+                   levels = c("Lower class/ Poor/ Bottom","Working class","Lower middle class/ Upper working class/ Medium lower",
+                              "Middle class","Upper middle class","Upper class"))
+
+
+table(allr$country) #1
+table(allr$V4)#2
+table(allr$qr) #3
+table(allr$partisan)#4
+table(allr$vote)#5
+table(allr$itax) #6
+table(allr$govReduce)#7
+table(allr$EDUCYRS) #8
+table(allr$reduce)#9
+table(allr$poorRich)#10
+table(allr$V33)#11
+table(allr$educ)#12
+table(allr$large)#13
+table(allr$ubenefit)#14
+table(allr$DEGREE)#15
+table(allr$당파성)#16
+table(allr$skill)#17
+table(allr$AGE) #18
+table(allr$SEX) #19
+table(allr$bincome) #20
+table(allr$family)#21
+table(allr$wmidConf)#22
+table(allr$ubenefit1)#23
+table(allr$uneEmp)#24
+table(allr$poorAid)#25
+table(allr$occu)#26
+table(allr$botTop)#27
+table(allr$klass)#28
+table(allr$justEdu)#29
+table(allr$topbot)#30
+table(allr$left)#31
+table(allr$MARITAL)#32
+table(allr$class)#33
+table(allr$qr3)
+library(car)
+
+table(allr$itax)
+allr$itax1 <- with(allr,
+                   ifelse(itax<3, "커야",
+                          ifelse(itax==3, "보통",
+                                 ifelse(itax>3, "적어야", NA))))
+allr$itax1 <- as.factor(allr$itax1)
+allr$itax1 <- relevel(allr$itax1, ref = "커야")
+table(allr$itax1)
+table(allr$large)
+allr$소득격차<-with(allr,
+                ifelse(large==1, "아주작음",
+                       ifelse(large==2, "작음",
+                              ifelse(large==3,"보통",
+                                     ifelse(large==4,"큼",
+                                            ifelse(large==5, "아주큼",NA))))))
+table(allr$소득격차)
+allr$직업1 <- with(allr,
+                    ifelse(occu<4,"비숙련",
+                           ifelse(occu>3 & occu<8, "숙련",
+                                  ifelse(occu>7, "관리직",NA))))
+table(allr$직업1)
+save.image("~/Dropbox/now/allr")
+```
+
+# combining all
+```{r echo=FALSE}
+#load("~/Dropbox/now/allr")
+library(car)
+table(allr$MARITAL)
+table(allr$class)
+table(allr$qr)
+allr$pr<-NA
+allr$pr[allr$country=="AU-Australia"]<-0
+allr$pr[allr$country=="AT-Austria"]<-1
+allr$pr[allr$country=="BG-Bulgaria"]<-1
+#allr$pr[allr$country=="CA"]<-0
+allr$pr[allr$country=="CL-Chile"]<-1
+allr$pr[allr$country=="CZ-Czech Republic"]<-1
+allr$pr[allr$country=="DE-Germany"]<-1
+allr$pr[allr$country=="FR-France"]<-0
+allr$pr[allr$country=="HU-Hungary"]<-0
+allr$pr[allr$country=="IT-Italy" & allr$V4==1992]<-1
+allr$pr[allr$country=="IT-Italy" & allr$V4==2009]<-1
+allr$pr[allr$country=="JP-Japan"]<-0
+allr$pr[allr$country=="NZ-New Zealand"]<-0
+allr$pr[allr$country=="NO-Norway"]<-1
+allr$pr[allr$country=="PH-Philippines"]<-0
+allr$pr[allr$country=="PL-Poland"]<-1
+allr$pr[allr$country=="PT-Portugal"]<-1
+allr$pr[allr$country=="SK-Slovak Republic"]<-1
+allr$pr[allr$country=="SI-Slovenia"]<-1
+allr$pr[allr$country=="ES-Spain"]<-1
+allr$pr[allr$country=="SE-Sweden"]<-1
+allr$pr[allr$country=="United Kingdom (Great Britain only)"]<-0
+allr$pr[allr$country=="US-United States"]<-0
+allr$pr[allr$country=="KR"]<-0
+table(allr$pr)
+
+#save.image("~/Dropbox/now/allr")
+```
+
+## save(allr1, file = "~/Dropbox/now/allr1.RData")
+```{r}
+allr$가족<-allr$family
+allr$계급<-allr$klass
+allr$소득분위<-allr$qr
+allr$소득과세<-allr$itax
+allr$소득재분배<-allr$govReduce
+table(allr$소득재분배)
+allr$계층의식<-allr$topbot
+allr$기본소득<-allr$bincome
+allr$나이<-allr$AGE
+
+allr$당파<-allr$partisan
+allr$투표<-allr$vote
+allr$교육기간<-allr$EDUCYRS
+
+allr$학력<-allr$educ
+allr$직업<-allr$occu
+allr$교육형평<-allr$justEdu
+
+allr$빈부갈등<-allr$poorRich
+allr$좌파<-allr$left
+table(allr$reduce)
+
+allr$소득재분배<-with(allr,
+                   ifelse(govReduce==1,"강력반대",
+                          ifelse(govReduce==2,"반대",
+                                 ifelse(govReduce==3, "보통",
+                                        ifelse(govReduce==4,"찬성",
+                                               ifelse(govReduce==5,"강력찬성",NA))))))
+table(allr$소득재분배)
+allr$재분배<-with(allr,
+                  ifelse(reduce==1,"반대",
+                        ifelse(reduce==2,"보통",
+                              ifelse(reduce==3,"찬성", NA))))
+table(allr$재분배)
+table(allr$qr)
+allr$소득<-with(allr,
+              ifelse(qr=="q1" | qr=="q2", "저",
+                     ifelse(qr=="q3", "중",
+                            ifelse(qr=="q4" | qr=="q5", "고", NA))))
+table(allr$소득)
+table(allr$large)
+allr$소득격차<-with(allr,
+                ifelse(large<3,"별로",
+                       ifelse(large==3,"보통",
+                              ifelse(large>3, "큼",NA))))
+table(allr$소득격차)
+allr$기본소득<-with(allr,
+                   ifelse(bincome==1,"강력반대",
+                          ifelse(bincome==2,"반대",
+                                 ifelse(bincome==3, "보통",
+                                        ifelse(bincome==4,"찬성",
+                                               ifelse(bincome==5,"강력찬성",NA))))))
+allr$기본소득1<-with(allr,
+                ifelse(bincome<3,"반대",
+                  ifelse(bincome==3,"보통",
+                       ifelse(bincome>3,"찬성",NA))))
+table(allr$기본소득)
+table(allr$SEX)
+allr$성<-allr$SEX
+table(allr$성)
+allr$나이<-allr$AGE
+table(allr$빈부갈등)
+table(allr$ubenefit)
+allr$실업정책<-allr$ubenefit
+table(allr$소득재분배)
+table(allr$교육기간)
+table(allr$itax1)
+allr$소득증세<-allr$itax1
+table(allr$가족)
+table(allr$소득)
+allr$재분배<-as.factor(as.character(allr$재분배))
+allr$소득<-as.factor(as.character(allr$소득))
+allr$기본소득<-as.factor(as.character(allr$기본소득))
+allr$가족<-as.factor(as.character(allr$가족))
+allr$빈부갈등<-as.factor(as.character(allr$빈부갈등))
+allr$성<-as.factor(as.character(allr$성))
+allr$소득격차<-as.factor(as.character(allr$소득격차))
+table(allr$qr3)
+allr$소득1<-with(allr,
+               ifelse(qr3=="q1", "저소득",
+                      ifelse(qr3=="q2","중소득",
+                             ifelse(qr3=="q3","고소득",NA))))
+table(allr$소득1)
+table(allr$당파성)
+library(xtable) 
+fit.all<-glm(투표~재분배+소득+당파+직업1+학력,data = allr,family = binomial)
+all.table<-xtable(fit.all)
+print(all.table, type = "html")
+xtable(fit.all,size="\\tiny")
+allr1<-subset(allr, select=c(country, V4,투표,직업,직업1, 계급, 소득재분배,재분배,소득격차,당파,학력,성,나이,소득,빈부갈등,
+                               교육기간,실업정책,소득증세, 소득과세,가족,기본소득,기본소득1,당파성, 소득1))
+
+save(allr1, file = "~/Dropbox/now/allr1.RData")
+table(allr1$소득1)
+```
+
+
+
+```{r}
+table(allr$poorRich)
+allr$poorRich1 <- with(allr,
+                       ifelse(poorRich<3, "약",
+                              ifelse(poorRich>2, "강", NA)))
+table(allr$poorRich1)
+
+table(allr$DEGREE)
+
+table(allr$wmidConf)
+
+#allr$wmidConf1 <- recode(allr$wmidConf,"'매우 약'='약';'매우 강'='강';'약'='약';'강'='강'")
+#table(allr$poorRich1)
+
+table(allr$ubenefit)
+table(allr$ubenefit1)
+#allr$ubenefit <- as.factor(allr$ubenefit)
+#allr$ubenefit <- relevel(allr$ubenefit, ref = "찬성")
+
+table(allr$bincome)
+allr$기본소득<-with(allr,
+                   ifelse(bincome==1,"강력반대",
+                          ifelse(bincome==2,"반대",
+                                 ifelse(bincome==3, "보통",
+                                        ifelse(bincome==4,"찬성",
+                                               ifelse(bincome==5,"강력찬성",NA))))))
+table(allr$기본소득)
+allr$기본소득<-factor(allr$기본소득, levels = c("강력반대","반대","보통","찬성","강력찬성"))
+table(allr$bincome)
+table(allr$justEdu)
+table(allr$large)
+allr$소득격차<-with(allr,
+                   ifelse(large==5,"너무큼",
+                          ifelse(large==4,"큼",
+                                 ifelse(large==3, "보통",
+                                        ifelse(large==2,"적음",
+                                               ifelse(large==1,"별로",NA))))))
+
+table(allr$소득격차)
+allr$소득격차<-factor(allr$소득격차, levels = c("별로","적음","보통","큼","너무큼"))
+
+table(allr$itax)
+allr$소득과세<-with(allr,
+                   ifelse(itax==1,"강력반대",
+                          ifelse(itax==2,"반대",
+                                 ifelse(itax==3, "보통",
+                                        ifelse(itax==4,"찬성",
+                                               ifelse(itax==5,"강력찬성",NA))))))
+table(allr$소득과세)
+allr$소득과세<-factor(allr$소득과세, levels = c("강력반대","반대","보통","찬성","강력찬성"))
+
+allr$계층 <- with(allr,
+                  ifelse(class=="Lower class/ Poor/ Bottom" | 
+                           class=="Working class","하",
+                        ifelse(class=="Lower middle class/ Upper working class/ Medium lower","중",
+                               ifelse(class=="Upper middle class" |
+                                        class=="Upper class","상",NA))))
+table(allr$계층)
+allr$계층 <- as.factor(allr$계층)
+allr$계층 <- relevel(allr$계층, ref = "하")
+
+table(allr$educ)
+
+## 
+table(allr$partisan)
+
+#allr$partisan<-relevel(allr$partisan, ref = "left")
+table(allr$educ)
+table(allr$SEX)
+
+table(allr$voted)
+# levels
+table(allr$klass)
+allr$klass<- factor(allr$klass, 
+               levels = c("하층","노동계급","중하","중간계급","중상","상층"))
+allr$partisan<- factor(allr$partisan, 
+               levels = c("좌파","중도","우파"))
+allr$educ<- factor(allr$educ, 
+               levels = c("저학력","중등학력","고학력"))
+allr$DEGREE<- factor(allr$DEGREE, 
+               levels = c("초등","중졸","고졸","전문대","대졸"))
+
+table(allr$DEGREE)
+table(allr$country)
+str(allr$country)
+table(allr$year)
+table(allr$skill)
+table(allr$occu)
+allr$직업1 <- with(allr,
+                    ifelse(occu<4,"비숙련",
+                           ifelse(occu>3 & occu<8, "숙련",
+                                  ifelse(occu>7, "관리직",NA))))
+table(allr$직업1)
+save.image("~/Dropbox/now/allr")
+```
+
+## dz
+```{r}
+load("~/Dropbox/now/allr")
+table(allr$large)
+table(allr$bincome)
+library(sjmisc)
+dz <- data.frame(나라 = allr$country,
+                  소득분위=allr$qr,
+                  투표 = to_factor(allr$vote),
+                  년도 = to_factor(allr$V4),
+                  나이 = allr$AGE,
+                   성 = to_factor(allr$SEX),
+                   직업 = to_factor(allr$occu),
+                  직업1 = to_factor(allr$직업1),
+                   계급 = to_factor(allr$klass),
+                   당파 = allr$partisan,
+                   학력 = to_factor(allr$educ),
+                   교육기간 = allr$EDUCYRS,
+                   교육 = to_factor(allr$DEGREE),
+                   계층 = to_factor(allr$계층),
+                   가족배경 = to_factor(allr$family),#1987,1992,1997,2009
+                   소득재분배= to_factor(allr$govReduce),#1987,1992,1997,2009
+                   소득격차해소 = to_factor(allr$reduce), #1987,1992,1997,2009
+                   빈곤퇴치 = to_factor(allr$poorAid), # spend less on it. 1987,1992,2009
+                   교육형평 = to_factor(allr$justEdu),# 1999,2009
+                   빈부갈등= to_factor(allr$poorRich), # 1987,1992,1999,2009
+                   #빈부갈등1= to_factor(allr$poorRich1), # 1987,1992,1999,2009
+                   노동중간갈등 = to_factor(allr$wmidConf), # 1987,1992,1999,2009
+                   #노동중간갈등1 = to_factor(allr$wmidConf1), # 1987,1992,1999,2009
+                   실업지원 = to_factor(allr$ubenefit), # 1987,1992,2009
+                  실업정책 = allr$ubenefit1, # 1,2,3,4,5
+                   소득과세 = allr$소득과세,
+                   소득증세 = to_factor(allr$itax1),# 1987,1992,1999,2009
+                   소득격차 = allr$소득격차, #to_factor(allr$large),#1987,1992,1997,2009
+                   #건강형평 = to_factor(allr$justHealth), # 1999,2009
+                   기본소득= allr$기본소득) # 1987,1992
+table(dz$소득격차)
+table(dz$직업1)
+dz$직업1 <- relevel(dz$직업1, ref = "비숙련")
+table(dz$소득분위)
+dz$소득분위 <- relevel(dz$소득분위, ref = "q3")
+table(dz$학력)
+dz$학력 <- relevel(dz$학력, ref = "저학력")
+colSums(is.na(dz))
+str(dz)
+# levels
+table(allr$klass)
+dz$계급<- factor(dz$계급, 
+                      levels = c("하층","노동계급","중하","중간계급","중상","상층"))
+dz$당파<- factor(dz$당파, 
+                         levels = c("좌파","중도","우파"))
+dz$학력<- factor(dz$학력, 
+                     levels = c("저학력","중등학력","고학력"))
+dz$빈부갈등<- factor(dz$빈부갈등, 
+               levels = c("매우 약","약","강","매우 강"))
+
+dz$노동중간갈등<- factor(dz$노동중간갈등, 
+                 levels = c("매우 약","약","강","매우 강"))
+dz$교육형평<- factor(dz$교육형평, 
+                 levels = c("공정","보통","불공정"))
+table(dz$기본소득)
+
+table(dz$소득재분배)
+dz$소득재분배<-with(dz,
+               ifelse(소득재분배==1, "강력반대",
+                           ifelse(소득재분배==2, "반대",
+                                       ifelse(소득재분배==3, "보통",
+                                                   ifelse(소득재분배==4, "찬성",
+                                                               ifelse(소득재분배==5, "강력찬성", NA))))))
+dz$소득재분배<-factor(dz$소득재분배, levels = c("강력반대","반대","보통","찬성","강력찬성"))
+table(dz$소득재분배)
+#dz$소득격차1<-factor(dz$소득격차, levels = c("작음", "보통", "큼"))
+table(dz$실업지원)
+dz$실업지원<-factor(dz$실업지원, levels = c("반대","보통", "찬성"))
+table(dz$실업정책)
+dz$실업정책<-with(dz,
+              ifelse(실업정책==1, "강력반대",
+                        ifelse(실업정책==2,"반대",
+                                   ifelse(실업정책==3, "보통",
+                                              ifelse(실업정책==4,"찬성",
+                                                         ifelse(실업정책==5,"강력찬성",NA))))))
+table(dz$실업정책)
+dz$실업정책<-factor(dz$실업정책, levels = c("강력반대","반대",
+                                    "보통","찬성","강력찬성"))
+colSums(is.na(dz))
+save(dz, file = "~/Dropbox/book/dz.RData")
+save.image("~/Dropbox/now/allr")
+```
+
+
+# regression
+```{r echo=FALSE}
+load("~/Dropbox/now/ZS5890")
+table(ZS5890$class)
+# allr$class<-as.integer(allr$class)
+allr$class<-with(allr,
+                 ifelse(class=="Lower class/ Poor/ Bottom",1,
+                        ifelse(class=="Working class", 2,
+                               ifelse(class=="Lower middle class/ Upper working class/ Medium lower",
+                                     3,
+                                      ifelse(class=="Middle class", 4,
+                                             ifelse(class=="Upper middle class", 5,
+                                                    ifelse(class=="Upper class",6,NA)))))))
+table(allr$class)
+allr$poor<-with(allr,
+                class<3, 1,0)
+table(allr$poor)
+library(MASS)
+table(allr$partisan)
+allr$partisan = relevel(allr$partisan, ref = "좌파")
+table(allr$qr)
+library(car)
+allr$qrr<-with(allr,
+               ifelse(qr=="q1" | qr=="q2", "d1",
+                      ifelse(qr=="q3", "d2",
+                             ifelse(qr=="q4" | qr=="q5", "d3",NA))))
+table(allr$qr3)
+table(allr$MARITAL) #1.Married 2.widowed 3.divored 4.separated 5.never married
+allr$married<-with(allr,
+                   ifelse(MARITAL==1, "Married",
+                          ifelse(MARITAL>1,"no",NA)))
+table(allr$married)
+
+vote<-glm(vote~occu+large+partisan+topbot+itax+AGE+SEX+qrr+pr+married+poor, data = allr, family = binomial) 
+summary(vote)
+exp(coef(vote))
+
+vote.class<-glm(vote~occu+large+partisan+topbot+itax+AGE+SEX+class+pr+married, data = allr, family = binomial) 
+summary(vote.class)
+exp(coef(vote.class))
+
+colSums(is.na(jp1)) # basic income NA
+table(allr$govReduce)
+reduce.1<-polr(govReduce~occu+partisan+topbot+SEX+AGE+married, data = allr, Hess = TRUE) 
+summary(reduce.1)
+exp(coef(reduce.1))
+
+#pol<-glm(reduce~occu+large+partisan+bincome+itax, data = jp1, family = binomial)
+pol<-glm(reduce~occu+large+partisan+itax+qrr, data = allr, family = binomial)
+summary(pol)
+exp(coef(pol))
+
+
+library(mfx)
+logitmfx(left ~ occu+topbot+large+skill+vote+married, data=allr)
+logitmfx(left~occu, data=allr)
+#logitmfx(left ~ occu+topbot+wmidConf+incomeDif+large+skill+voted, data=jp1)
+#logitmfx(vote~class+bincome+itax+occu+wmidConf+skill, data = jp1)
+#logitmfx(vote~class+bincome+itax+occu+wmidConf, data = jp1)
+logitmfx(vote~class+topbot+itax, data = jp1)
+
+library(mfx)
+#logitmfx(left ~ occu+topbot+incomeDif+large+skill+voted, data=jp1)
+logitmfx(left ~ occu+topbot+large+skill+voted, data=jp1)
+jp1$vote<-ifelse(jp1$voted==1,1,0)
+logitmfx(vote~class+itax+occu+skill, data = jp1)
+logitmfx(vote~class+itax+occu+skill, data = jp1)
+logitmfx(vote~class+topbot+itax, data = jp1)
+```
+
+# 비례대표제
+```{r}
+pr<-subset(allr, pr==1)
+mj<-subset(allr, pr==0)
+vote.pr<-glm(vote~occu+large+partisan+topbot+itax+AGE+SEX+qrr+pr, data = pr, family = binomial) 
+summary(vote.pr)
+exp(coef(vote.pr))
+
+vote.mj<-glm(vote~occu+large+partisan+topbot+itax+AGE+SEX+qrr+pr, data = mj, family = binomial) 
+summary(vote.mj)
+exp(coef(vote.mj))
+```
+
+# 그림
+```{r echo=FALSE}
+
+#sss<-subset(allr, select = c(vote,AGE,SEX,married, partisan,skill,left,govReduce,reduce))
+sss<-subset(allr,select = c(AGE,SEX,left,occu,partisan,skill,qrr,qr,educ,vote,
+                              govReduce,class))
+str(sss)
+sss$SEX<-as.factor(sss$SEX)
+sss$occu<-as.factor(sss$occu)
+sss$left<-as.factor(sss$left)
+m<-polr(partisan~occu+SEX, data = sss, Hess = TRUE)
+#' ## simple linear logistic regression
+left.mod0 <- glm(left ~ SEX+occu, data=sss, family='binomial')
+anova(left.mod0)
+#' ## plots, using effects package
+#' #' ## main effects model
+left.mod1 <- glm(left ~ AGE + SEX , data=sss, family='binomial')
+summary(left.mod1)
+Anova(left.mod1)
+
+sss$left<-as.factor(sss$left)
+sss$occu<-as.factor(sss$occu)
+sss$SEX<-as.factor(sss$SEX)
+sss$AGE<-as.numeric(sss$AGE)
+
+sss$skill<-as.factor(sss$skill)
+str(sss)
+sss.mod<-glm(left~occu*AGE+SEX, family = binomial,
+             data = sss)
+library(effects)
+ss.effects <- allEffects(sss.mod, xlevels=list(AGE=18:80))
+plot(ss.effects, ylab="Probability(released)", rug=FALSE)
+
+s.mod<-glm(left~occu+SEX,data = sss,family = binomial)
+ss.effects <- allEffects(s.mod)
+par(family="AppleGothic")
+plot(ss.effects, ylab="ㅂ지", rug=FALSE)
+
+sss<-subset(ZS5890,select = c(AGE,SEX,left,occu,partisan,skill,incomeDif,large,
+                              govReduce))
+s.mod<-polr(partisan~occu, data = sss, Hess = TRUE)
+s.effects<-allEffects(s.mod)
+plot(s.effects, ylab="ㅂ지", rug=FALSE)
+
+s.mod<-polr(partisan~occu+govReduce, data = sss, Hess = TRUE)
+s.effects<-allEffects(s.mod)
+plot(s.effects, ylab="ㅂ지", rug=FALSE)
+
+sss$SEX<-as.factor(sss$SEX)
+sss$occu<-as.factor(sss$occu)
+sss$left<-as.factor(sss$left)
+s.mod<-polr(partisan~occu*SEX+govReduce, data = sss, Hess = TRUE)
+s.effects<-allEffects(s.mod)
+plot(s.effects, ylab="ㅂ지", rug=FALSE)
+
+table(sss$large)
+sss$large<-as.factor(sss$large)
+sss$govReduce<-as.factor(sss$govReduce)
+
+
+#
+sss$govReduce<-recode(sss$govReduce, "1:2=1;3=2;4:5=3")
+sss$partisan<- factor(sss$partisan, 
+                      levels = c("left","center","right")) 
+table(sss$govReduce)
+colSums(is.na(sss))
+str(sss)
+s.polr<-polr(govReduce~partisan*skill+SEX, data = sss, Hess = TRUE)
+s.effects<-allEffects(s.polr)
+plot(s.effects, ylab="ㅂ지", rug=FALSE)
+
+#' ## plot terms not in model
+plot(effect("partisan:skill", s.polr))
+plot(effect("skill:SEX", s.polr))
+```
+
+# 투표율 소득
+```{r}
+library(vcd)
+class(sss$vote)
+voteys.data<-structable(vote~left+SEX+educ+qr, data = sss) # V66=class
+voteys.data
+voteys<-xtabs(Freq~vote+qr, data = voteys.data)
+voteys<-data.frame(voteys)
+voteys1<-xtabs(~vote+qr, data = sss)
+voteys1<-data.frame(voteys1)
+
+voteus<-xtabs(~qr+vote, data = usr)
+write.csv(voteus, file = "~/Dropbox/book/final/voteus.csv")
+votegb<-xtabs(~qr+vote, data = gbr)
+write.csv(votegb, file = "~/Dropbox/book/final/votegb.csv")
+votede<-xtabs(~qr+vote, data = der)
+write.csv(votede, file = "~/Dropbox/book/final/votede.csv")
+
+votese<-xtabs(~qr+vote, data = ser)
+write.csv(votese, file = "~/Dropbox/book/final/votese.csv")
+```
+
+
+# 1987-2009 
+```{r}
+library(readxl)
+voteys <- read_excel("~/Dropbox/book/final/voteys.xlsx", 
+         sheet = "시트1")
+voteQ1<-subset(voteys, income=="1분위", select = c(country, income,turnout))
+library(ggplot2)
+
+ggplot(data = voteQ1, aes(x=country, y=turnout))+
+  geom_bar(stat = "identity")+xlab("")
+
+voteQ2<-subset(voteys, income=="q2", select = c(country, income,turnout))
+ggplot(data = voteQ2, aes(x=country, y=turnout))+
+  geom_bar(stat = "identity")+xlab("")
+
+voteQ5<-subset(voteys, income=="5분위", select = c(country, income,turnout))
+ggplot(data = voteQ5, aes(x=country, y=turnout))+
+  geom_bar(stat = "identity")+xlab("")
+
+voteus<-subset(voteys, country=="미국", select = c(country, income,turnout))
+ggplot(data = voteus, aes(x=income, y=turnout))+theme_bw(base_family = "NanumGothic")+
+  geom_bar(stat = "identity")+ggtitle("미국의 소득별 투표율 1987-2009")+
+  geom_text(aes(label=turnout), vjust=1.6, color="white", size=5.5)+
+  xlab("")+ylab("")+coord_cartesian(ylim = c(0,90)) 
+
+votede<-subset(voteys, country=="독일", select = c(country, income,turnout))
+ggplot(data = votede, aes(x=income, y=turnout))+theme_bw(base_family = "NanumGothic")+
+  geom_bar(stat = "identity")+ggtitle("독일의 소득별 투표율 1987-2009")+
+  geom_text(aes(label=turnout), vjust=1.6, color="white", size=5.5)+
+  xlab("")+ylab("")+coord_cartesian(ylim = c(0,90)) 
+```
+
+```{r}
+votejpkr<-subset(allr, country=="KR" | country=="JP-Japan",
+                 select = c(country,vote,qr))
+jp<-subset(allr, country=="JP-Japan", select = c(country,qr,vote))
+kr<-subset(allr, country=="KR", select = c(country,qr,vote))
+ph<-subset(allr, country=="PH-Philippines", select = c(country, qr,vote))
+ph1<-data.frame(ph)
+jpkr<-rbind(jp,kr)
+jp1<-xtabs(~qr+vote, data=jp)
+jp1<-data.frame(jp1)
+votejp<-xtabs(~qr+vote, data=jp)
+votejp
+kr1<-xtabs(~qr+vote, data = kr)
+kr1<-data.frame(kr1)
+jpkr1<-rbind(jp1,kr1)
+write.csv(jpkr1, file = "~/Dropbox/book/final/votejpkr.csv")
+```
+
+# 한국.일본,대만 투표율과 소득 identity13, 2013
+```{r}
+library(readxl)
+vote3nations <- read_excel("~/Dropbox/book/final/vote3nations.xlsx", 
+            sheet = "시트2")
+vote4nations <- read_excel("~/Dropbox/book/final/vote3nations.xlsx", 
+            sheet = "시트2")
+q1vote<-subset(vote3nations, income=="1분위", select = c(country,income,turnout))
+q5vote<-subset(vote3nations, income=="5분위", select = c(country,income,turnout))
+ggplot(data = q1vote, aes(x=country, y=turnout))+theme_bw(base_family = "NanumGothic")+
+  geom_bar(stat = "identity")+ggtitle("소득하위20% 투표율 한국 일본 대만 1987-2009")+
+  geom_text(aes(label=turnout), vjust=1.6, color="white", size=5.5)+
+  xlab("")+ylab("")+coord_cartesian(ylim = c(0,90)) +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=14,face="bold"))
+# 상위 20%
+ggplot(data = q5vote, aes(x=country, y=turnout))+theme_bw(base_family = "NanumGothic")+
+  geom_bar(stat = "identity")+ggtitle("상위20% 투표율 1987-2009")+
+  geom_text(aes(label=turnout), vjust=1.6, color="white", size=5.5)+
+  xlab("")+ylab("")+coord_cartesian(ylim = c(0,90)) +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=14,face="bold"))
+
+votejp<-subset(vote3nations, country=="일본", select = c(country, income,turnout))
+ggplot(data = votejp, aes(x=income, y=turnout))+theme_bw(base_family = "NanumGothic")+
+  geom_bar(stat = "identity")+ggtitle("일본의 소득별 투표율 2013")+
+  geom_text(aes(label=turnout), vjust=1.6, color="white", size=5.5)+
+  xlab("")+ylab("")+coord_cartesian(ylim = c(0,90)) 
+```
+
+```{r}
+str(allr)
+voteyes<-xtabs(~qr+vote+country, data = allr)
+voteyes<-data.frame(voteyes)
+#write.csv(voteyes, file = "~/Dropbox/book/final/voteyes.csv")
+library(readxl)
+voteyes <- read_excel("~/Dropbox/book/final/voteyes.xlsx")
+g1<-ggplot(data =voteyes, aes(x=qr, y=turnout, group=country))
+g2<-g1+geom_line()+geom_point()+xlab("")+ylab("")
+g3<-g2+facet_wrap(~country, nrow = 3, as.table = FALSE)+
+  theme_bw(base_family = "NanumGothic")+guides(colour=guide_legend(title=NULL))
+print(g3)
+
+```
+
+## 직업과 투표
+```{r}
+#vote.occu<-xtabs(~직업+vote+country, data = allr)
+#vote.occu<-data.frame(vote.occu)
+#write.csv(vote.occu, file = "~/Dropbox/book/final/voteOccu.csv")
+library(readxl)
+vote.occu <- read_excel("~/Dropbox/book/final/voteyes.xlsx", 
+     sheet = "직업")
+str(vote.occu)
+vote.occu$turnout<-100*vote.occu$vote/(vote.occu$no+vote.occu$vote)
+g1<-ggplot(data =vote.occu, aes(x=직업, y=turnout, group=country))
+g2<-g1+geom_line()+geom_point()+xlab("")+ylab("")+
+  scale_x_continuous(breaks = c(1,3,6,9))
+g3<-g2+facet_wrap(~country, nrow = 3, as.table = FALSE)+
+  theme_bw(base_family = "NanumGothic")+guides(colour=guide_legend(title=NULL))+
+  ggtitle("직업별 투표율")
+print(g3)
+```
+
