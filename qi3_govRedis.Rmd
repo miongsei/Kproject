@@ -1,0 +1,609 @@
+---
+title: "anovaEx"
+author: "강명세"
+date: '2018 3 9 '
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r cars}
+rm(list = ls())
+load("~/Dropbox/now/ZS5890") # allr?
+library("ggpubr")
+```
+
+## US
+
+
+```{r pressure, echo=FALSE}
+library(vcd)
+usa<-subset(allr, country=="US-United States")
+us87 <- subset(usa, V4==1987)
+dat.87 <- structable(qi3~reduce, data = us87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+us92 <- subset(usa, V4==1992)
+dat.92 <- structable(qi3~reduce, data = us92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+us99 <- subset(usa, V4==1999)
+dat.99 <- structable(qi3~reduce, data = us99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+us09 <- subset(usr, V4==2009)
+dat.09 <- structable(qi3~reduce, data = us09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+uss<-subset(ZS5890, V7==8402009)
+
+dat<-cbind(dat.87, dat.92, dat.99, dat.09)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportUS.csv")
+
+```
+
+## DE
+```{r}
+de87 <- subset(der, V4==1987)
+dat.87 <- structable(qi3~reduce, data = de87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+de92 <- subset(der, V4==1992)
+dat.92 <- structable(qi3~reduce, data = de92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+de99 <- subset(der, V4==1999)
+dat.99 <- structable(qi3~reduce, data = de99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+de09 <- subset(der, V4==2009)
+dat.09 <- structable(qi3~reduce, data = de09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.87, dat.92, dat.99, dat.09)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportDE.csv")
+```
+
+
+## fR
+```{r}
+fr87 <- subset(frr, V4==1987)
+dat.87 <- structable(qi3~reduce, data = fr87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+fr92 <- subset(frr, V4==1992)
+dat.92 <- structable(qi3~reduce, data = fr92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+fr99 <- subset(frr, V4==1999)
+dat.99 <- structable(qi3~reduce, data = fr99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+fr09 <- subset(frr, V4==2009)
+dat.09 <- structable(qi3~reduce, data = fr09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.87, dat.92, dat.99, dat.09)
+write.csv(dat.99, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportFR.csv")
+```
+
+## AU
+```{r}
+au87 <- subset(aur, V4==1987)
+dat.87 <- structable(qi3~reduce, data = au87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+au92 <- subset(aur, V4==1992)
+dat.92 <- structable(qi3~reduce, data = au92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+au99 <- subset(aur, V4==1999)
+dat.99 <- structable(qi3~reduce, data = au99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+au09 <- subset(aur, V4==2009)
+dat.09 <- structable(qi3~reduce, data = au09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.87, dat.92, dat.99, dat.09)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportAU.csv")
+```
+
+## AT
+```{r}
+at87 <- subset(atr, V4==1987)
+dat.87 <- structable(qi3~reduce, data = at87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+at92 <- subset(atr, V4==1992)
+dat.92 <- structable(qi3~reduce, data = at92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+at99 <- subset(atr, V4==1999)
+dat.99 <- structable(qi3~reduce, data = at99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+at09 <- subset(atr, V4==2009)
+dat.09 <- structable(qi3~reduce, data = at09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.87, dat.92, dat.99, dat.09)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/qi3/netsuportAT.csv")
+```
+
+## CH
+```{r}
+## CH
+ch87 <- subset(chr, V4==1987)
+dat.87 <- structable(qi3~reduce, data = ch87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+ch92 <- subset(chr, V4==1992)
+dat.92 <- structable(qi3~reduce, data = ch92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+ch99 <- subset(chr, V4==1999)
+dat.99 <- structable(qi3~reduce, data = ch99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+ch09 <- subset(chr, V4==2009)
+dat.09 <- structable(qi3~reduce, data = ch09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.87, dat.92, dat.99, dat.09)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportCH.csv")
+
+```
+
+#CZ
+```{r}
+cz87 <- subset(czr, V4==1987)
+dat.87 <- structable(qi3~reduce, data = at87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+cz92 <- subset(czr, V4==1992)
+dat.92 <- structable(qi3~reduce, data = cz92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+cz99 <- subset(czr, V4==1999)
+dat.99 <- structable(qi3~reduce, data = cz99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+cz09 <- subset(czr, V4==2009)
+dat.09 <- structable(qi3~reduce, data = cz09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.87, dat.92, dat.99, dat.09)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportCZ.csv")
+```
+
+## ES
+```{r}
+es87 <- subset(esr, V4==1987)
+dat.87 <- structable(qi3~reduce, data = es87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+es92 <- subset(esr, V4==1992)
+dat.92 <- structable(qi3~reduce, data = es92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+es99 <- subset(esr, V4==1999)
+dat.99 <- structable(qi3~reduce, data = es99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+es09 <- subset(esr, V4==2009)
+dat.09 <- structable(qi3~reduce, data = es09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.87, dat.92, dat.99, dat.09)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportES.csv")
+```
+
+## GB
+```{r}
+gb87 <- subset(gbr, V4==1987)
+dat.87 <- structable(qi3~reduce, data = gb87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+gb92 <- subset(gbr, V4==1992)
+dat.92 <- structable(qi3~reduce, data = gb92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+gb99 <- subset(gbr, V4==1999)
+dat.99 <- structable(qi3~reduce, data = gb99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+gb09 <- subset(gbr, V4==2009)
+dat.09 <- structable(qi3~reduce, data = gb09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.87, dat.92, dat.99, dat.09)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportGB.csv")
+```
+
+## HU
+```{r}
+hu87 <- subset(hur, V4==1987)
+dat.87 <- structable(qi3~reduce, data = hu87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+hu92 <- subset(hur, V4==1992)
+dat.92 <- structable(qi3~reduce, data = hu92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+hu99 <- subset(hur, V4==1999)
+dat.99 <- structable(qi3~reduce, data = hu99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+hu09 <- subset(hur, V4==2009)
+dat.09 <- structable(qi3~reduce, data = hu09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.87, dat.92, dat.99, dat.09)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportHU.csv")
+```
+
+## JP
+```{r}
+## jp
+it87 <- subset(jpr, V4==1987)
+dat.87 <- structable(qi3~reduce, data = it87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+it92 <- subset(jpr, V4==1992)
+dat.92 <- structable(qi3~reduce, data = it92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+jp99 <- subset(jpr, V4==1999)
+dat.99 <- structable(qi3~reduce, data = jp99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+jp09 <- subset(jpr, V4==2009)
+dat.09 <- structable(qi3~reduce, data = jp09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.09)
+write.csv(dat.09, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportJP.csv")
+```
+
+
+## KR
+```{r}
+
+
+kr09 <- subset(kr09a, V4==2009)
+dat.09 <- structable(qi3~reduce, data = kr09a)
+dat.09
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+write.csv(dat.09, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportKR.csv")
+```
+
+## NO
+```{r}
+no87 <- subset(nor, V4==1987)
+dat.87 <- structable(qi3~reduce, data = no87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+no92 <- subset(nor, V4==1992)
+dat.92 <- structable(qi3~reduce, data = no92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+no99 <- subset(nor, V4==1999)
+dat.99 <- structable(qi3~reduce, data = no99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+no09 <- subset(nor, V4==2009)
+dat.09 <- structable(qi3~reduce, data = no09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.92, dat.99, dat.09)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportNO.csv")
+```
+
+
+# {PH}
+```{r}
+ph87 <- subset(phr, V4==1987)
+dat.87 <- structable(qi3~reduce, data = ph87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+ph92 <- subset(phr, V4==1992)
+dat.92 <- structable(qi3~reduce, data = ph92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+ph99 <- subset(phr, V4==1999)
+dat.99 <- structable(qi3~reduce, data = ph99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+ph09 <- subset(phr, V4==2009)
+dat.09 <- structable(qi3~reduce, data = ph09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.92, dat.99)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportPH.csv")
+
+```
+
+## PL
+```{r}
+pl87 <- subset(plr, V4==1987)
+dat.87 <- structable(qi3~reduce, data = pl87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+pl92 <- subset(plr, V4==1992)
+dat.92 <- structable(qi3~reduce, data = pl92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+pl99 <- subset(plr, V4==1999)
+dat.99 <- structable(qi3~reduce, data = pl99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+pl09 <- subset(plr, V4==2009)
+dat.09 <- structable(qi3~reduce, data = pl09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.87, dat.92, dat.99)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportPL.csv")
+```
+
+##SE
+```{r}
+se87 <- subset(ser, V4==1987)
+dat.87 <- structable(qi3~reduce, data = se87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+se92 <- subset(ser, V4==1992)
+dat.92 <- structable(qi3~reduce, data = se92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+se99 <- subset(ser, V4==1999)
+dat.99 <- structable(qi3~reduce, data = se99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+se09 <- subset(ser, V4==2009)
+dat.09 <- structable(qi3~reduce, data = se09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.92, dat.99, dat.09)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportSE.csv")
+
+```
+
+# SK
+```{r}
+se87 <- subset(skr, V4==1987)
+dat.87 <- structable(qi3~reduce, data = se87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+sk92 <- subset(skr, V4==1992)
+dat.92 <- structable(qi3~reduce, data = sk92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+sk99 <- subset(skr, V4==1999)
+dat.99 <- structable(qi3~reduce, data = sk99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+sk09 <- subset(skr, V4==2009)
+dat.09 <- structable(qi3~reduce, data = sk09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.92, dat.99, dat.09)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportSK.csv")
+```
+
+
+# SI
+```{r}
+si92 <- subset(sir, V4==1992)
+dat.92 <- structable(qi3~reduce, data = si92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+si99 <- subset(sir, V4==1999)
+dat.99 <- structable(qi3~reduce, data = si99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+si09 <- subset(sir, V4==2009)
+dat.09 <- structable(qi3~reduce, data = si09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.92, dat.99, dat.09)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportSI.csv")
+
+```
+
+```{r}
+nz87 <- subset(nzr, V4==1987)
+dat.87 <- structable(qi3~reduce, data = nz87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+nz92 <- subset(nzr, V4==1992)
+dat.92 <- structable(qi3~reduce, data = nz92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+nz99 <- subset(nzr, V4==1999)
+dat.99 <- structable(qi3~reduce, data = nz99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+nz09 <- subset(nzr, V4==2009)
+dat.09 <- structable(qi3~reduce, data = nz09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.92, dat.99, dat.09)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportNZ.csv")
+
+```
+
+
+
+## it
+```{r}
+it87 <- subset(itr, V4==1987)
+dat.87 <- structable(qi3~reduce, data = it87)
+dat.87 <- data.frame(round(100*prop.table(dat.87)))
+dat.87
+
+it92 <- subset(itr, V4==1992)
+dat.92 <- structable(qi3~reduce, data = it92)
+dat.92 <- data.frame(round(100*prop.table(dat.92)))
+dat.92
+
+it99 <- subset(itr, V4==1999)
+dat.99 <- structable(qi3~reduce, data = it99)
+dat.99 <- data.frame(round(100*prop.table(dat.99)))
+dat.99
+
+it09 <- subset(itr, V4==2009)
+dat.09 <- structable(qi3~reduce, data = it09)
+dat.09 <- data.frame(round(100*prop.table(dat.09)))
+dat.09
+
+dat<-cbind(dat.87, dat.92, dat.09)
+write.csv(dat, "/Users/myungseikang/Documents/GitHub/data/qi3/netsuportIT.csv")
+```
+
+
+
+```{r}
+rm(list = ls())
+library(readxl)
+library(readxl)
+netsupport <- read_excel("~/Documents/GitHub/data/qi3/netsupport.xlsx", 
+         sheet = "시트2")
+attach(netsupport)
+netsupport$netq1<-100*q1_supp/(q1_opp+q1_same+q1_supp) - 100*q1_opp/(q1_opp+q1_same+q1_supp)
+netsupport$netq2<-100*q2_supp/(q2_opp+q2_same+q2_supp) - 100*q2_opp/(q2_opp+q2_same+q2_supp)
+netsupport$netq3<-100*q3_supp/(q3_opp+q3_same+q3_supp) - 100*q3_opp/(q3_opp+q3_same+q3_supp)
+netsupp<-netsupport[,c(1:2,12:14)]
+detach(netsupport)
+library(tidyr)
+library(readxl)
+library(reshape)
+netsupp<-data.frame(netsupp)
+pdata <- melt(netsupp, id=c("year","country"))
+pdata<-subset(pdata, country=="us" | country=="se" | country=="de" |
+                  country=="si" | country=="sk" | country=="gb" |
+                  country=="hu" | country=="it" |
+                  country=="cz" | country=="gb" | country=="au" |
+                  country=="at" | country=="no" | country=="es" |
+                  country=="pl" | country=="pl")
+pdata$variable <- factor(pdata$variable,
+                    levels = c("netq1","netq2","netq3"),
+                    labels = c("저", "중", "고"))
+library(ggplot2)
+g1 <- ggplot(data = pdata, aes(x=year, y=value, color=variable))
+g2 <- g1+geom_line() + geom_point() + scale_x_continuous(breaks = c(1987, 1992, 1999,2009)) +
+  scale_y_continuous(name = "재분배선호") + xlab("")
+g3 <- g2 + facet_wrap(~country, nrow = 2, as.table = FALSE)
+print(g3)
+
+pdata.1<-subset(pdata, country=="us" | country=="se" | country=="de" |
+                country=="si" | country=="sk" | country=="gb" |
+                country=="hu" | country=="it" )
+
+pdata.2<-subset(pdata,
+                country=="cz" | country=="gb" | country=="au" |
+                country=="at" | country=="no" | country=="es" |
+                country=="pl" | country=="ph")
+
+```
+
+## 최종그림
+```{r echo=FALSE}
+
+pdata.2$year<-as.factor(pdata.2$year)
+pdata.2 %>%
+  ggplot(aes(x = year, y = value, group=variable, colour = variable, shape = variable)) +
+  geom_line(aes(linetype = variable)) + xlab("") +
+  scale_x_discrete() + ylab("") +ggtitle("가구소득별 재분배선호")+
+  theme(plot.title = element_text(size = 12))+
+  theme(legend.title=element_blank())+scale_y_continuous(breaks = c(-50,25,0,25,50))+
+  facet_wrap(~country, nrow = 2, as.table = FALSE) # Final
+
+pdata.1$year<-as.factor(pdata.1$year)
+pdata.1 %>%
+  ggplot(aes(x = year, y = value, group=variable, colour = variable, shape = variable)) +
+  geom_line(aes(linetype = variable)) + xlab("") +
+  scale_x_discrete() + ylab("") +ggtitle("가구소득별 재분배선호")+
+  theme(plot.title = element_text(size = 12))+
+  theme(legend.title=element_blank())+scale_y_continuous(breaks = c(-50,25,0,25,50))+
+  facet_wrap(~country, nrow = 2, as.table = FALSE) # Final
+
+```
+
