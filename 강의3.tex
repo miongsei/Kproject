@@ -1,0 +1,349 @@
+\makeatletter
+\let\ifGm@compatii\relax
+\makeatother
+\documentclass[xcolor=pdftex,dvipsnames]{beamer}
+\usefonttheme{structurebold}
+
+%\usetheme{default}
+%\usetheme{Warsaw}
+%\usetheme{Copenhagen}
+%\usetheme{Berlin}
+%\usetheme{Frankfurt}
+%\usetheme{Pittsburgh}
+%\usetheme{Malmoe}
+\usetheme{CambridgeUS}
+
+\usepackage{graphics}
+\usepackage[hangul]{kotex}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{color}
+
+\usepackage[thinlines]{easytable}
+
+\usefonttheme{structuresmallcapsserif}
+
+\newcommand{\its}{\vskip 10pt \item}
+\newcommand{\pits}{\vskip 10pt \pause \item}
+\newcommand{\st}{\operatorname{st}}
+\newcommand{\var}{\operatorname{var}}
+\newtheorem{prop}{Proposition}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\AR}{\operatorname{AR}}
+\newcommand{\BR}{\operatorname{BR}}
+%\newtheorem{theorem}{Theorem}
+\newcommand{\un}{\underline}
+\newcommand{\ov}{\overline}
+\newcommand{\gp}{\succ}
+\newcommand{\lp}{\prec}
+\newcommand{\gep}{\succsim}
+\newcommand{\lep}{\precsim}
+\newcommand{\ch}{{^\checkmark}}
+\newcommand{\cyan}{\cellcolor{cyan}}
+\newcommand{\orange}{\cellcolor{orange}}
+\newcommand{\G}{\color{red}}
+\newcommand{\B}{\color{black}}
+\renewcommand{\(}{\left(}
+\renewcommand{\)}{\right)}
+
+
+\newcommand{\T}{\ensuremath{\mbox{\footnotesize\textsc{occupation}}}}
+\renewcommand{\S}{\ensuremath{\mbox{\footnotesize\textsc{suicide}}}}
+%\newcommand{\R}{\ensuremath{\mbox{\footnotesize\textsc{religious}}}}
+
+\setbeamertemplate{footline}[page number]{}
+\setbeamertemplate{navigation symbols}{}
+
+\title[]{비교정부론}
+\author[]{강명세}
+\institute[]{제종연구소}
+\date[]{2018.3}
+
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\transboxout
+\end{frame}
+
+\section{국가 및 국가형성}
+
+
+\begin{frame}
+\frametitle{근대국가}
+\begin{itemize}
+\item 강제적 정치조직(Max Weber)
+\begin{itemize}
+\item 일정 영토 안에서\\
+\item 질서유지를 위한 물리적 힘의 정당한 사용\\
+\end{itemize}
+%\begin{itemize}
+
+\
+
+\item 대외적 전쟁 수행능력의 독점
+
+\
+
+\item 중앙국가의 등장
+\begin{itemize}
+\item 합리적-법적 행정
+\item 중앙정부의 추출능력
+\item 권위의 정당성
+\end{itemize}
+%\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{주권영토국가}
+\begin{itemize}
+\item 11세기 이후 전쟁, 상업 및 이데올로기
+\begin{enumerate}
+\item 전쟁$\rightarrow$ 근대행정국가\\
+군사기술의 발달\\
+전쟁에서 승리하는데 필요한 강력한 행정관리능력 
+
+\item 상업 $\rightarrow$ 자본주의+정치적 중앙권력\\
+도시와 왕권의 연합 burger(도시상공업층)\\
+국가의 보호(공공재)와 재정의 교환관계\\
+\item 개인주의\\
+근대적 계약개념 주권국가탄생\\
+봉건질서의 붕괴 the Peace of Westphalia 1648
+\end{enumerate}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{주권국가는 왜 다른 길로 가게 되었나?}
+\begin{enumerate}
+\item puzzles 및 신생국가에 대한 역사적 함의
+\item 왜 어떤 국가는 입헙주의, 다른 국가는 절대주의로?\\
+입헙주의(영국,네덜란드)\\
+절대주의(프러시아, 러시아)
+\item 왜 어떤 곳은 합리적-법적 행정국가, 다른 데서는 실패?\\
+아프리카의 국가형성실패\\
+중동지역의 실패\\
+\item 국가형성의 실패$\rightarrow$경제적 실패의 악순환
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{전쟁과 상업의 상호작용과 체제}
+\begin{enumerate}
+\item 상업의 발달 $\rightarrow$도시팽창$\rightarrow$전쟁재정확보\\
+도시는 민주적 국가운영요구
+\item 상업과 전쟁$\rightarrow$중상주의 \\
+국가의 개입(네덜란드, 영국)\\
+\item 후기발전국가(러시아, 독일)\\
+지정학적 경쟁에서 국가의 중앙권력공고화 및 권위주의적 지배 강화
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{지정학이론과 제도주의}
+\frametitle{지정학이론: 전쟁과 체제유형}
+\begin{itemize}
+\item 절대국가 vs 입헌국가
+\begin{itemize}
+\item 해양국가(영국) 해군력$\rightarrow$입헌국가\\
+해군력은 내부억압용 부적합 \\
+동의에 기반한 지배
+
+\
+
+\item 대륙국가(프랑스 독일 러시아) 상비육군$\rightarrow$절대국가\\
+대외적 영토방어\\
+대내적 억압
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{국가형성의 제도주의 설명}
+\begin{enumerate}
+\item 제도주의는 체제유형이 지배자의 전쟁동원능력에 미치는 결과에 관심
+\item 대내적 효과\\
+비위계적 국가$\rightarrow$경제발전\\
+국가신뢰$\rightarrow$기업가의 경제활동 활성화
+
+\
+
+\item 대외적 효과\\
+정부는 국민에 책임을 지며 대외적 책임감 정립\\
+국민신뢰$\rightarrow$대외경쟁력제고
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{새로운 국가}
+\begin{itemize}
+\item 탈식민지 및 탈공산화 시대의 국가형성\\
+아프리카 아시아  동구 국가 증가\\
+
+\
+
+\item 유럽국가형성과의 차이\\
+\begin{itemize}
+\item 냉전시대 + 핵 $\rightarrow$소규모 전쟁
+\item 내전이나 인종갈등은 국가능력과 무관
+\item 국가의 폭력독점약화
+\end{itemize}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{후기국가형성의 경제적 환경}
+\begin{itemize}
+
+\item 초기국가형성기의 중상주의 부재
+\item 국가간 전쟁과정에서 국내시장의 공고화 등 경제적 효과 부재
+
+\begin{itemize}
+\item Washington Consensus$\rightarrow$자유무역주의이념
+\item 자본과 무역 세계화$\rightarrow$수렴화
+\end{itemize}
+
+\item 동아시아의 신화
+왜 여기서는 지배층의 추출행태가 일어나지 않았나?
+민중포섭의 연기와 재분배의 지연
+\end{itemize}
+\end{frame}
+
+
+
+
+
+\begin{frame}{한국과 대만 vs 터키와 시리아}
+\begin{itemize}
+\item 국가형성의 성공과 경제성장
+상대적으로 권력의 다원적 분포 .\\
+정치적 중앙집권 \\
+\item 터키와 시리아
+국가형성기의 설익은 포섭\\
+민중의 분배요구\\
+\item 성공과 실패: \\
+국내적 연합세력의 형성에 주목할 필요
+\end{itemize}
+\end{frame}
+
+\begin{frame}{경로의존성}
+유럽의 국가형성경로 path dependency
+\begin{itemize}
+\item 동원과 참여의 긴장
+\item 절대왕정과 귀족의 연합
+귀족 면세 평민과세\\
+(프랑스 스페인 프러시아)
+\item 지배층과 시민의 연합\\
+의회주의(영국) 귀족과세
+\end{itemize}
+\end{frame}
+
+\section{실패한 국가}
+
+\begin{frame}
+\frametitle{자원의 저주}
+자연자원은 민주주의의 장애
+\begin{itemize}
+\item 자연자원은 공공재제공\\
+중동석유 잠재적 불만억제\\
+\item 배제된 집단은 금융자원을  기반으로 기득권에 도전?
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{주권국가의 이념적 정당화} 
+\begin{enumerate}
+\item  영토주권확립
+
+
+신정국가 기독교세계의 대체\\
+초영토적 무스림 세계의 존재? 범터키권?
+\item  주권국가 vs 인종, 종족, 초영토적 충성심 경쟁\\
+국민군대, 자국어, 시민권확립, 납세의무
+\item  대중적 지지의 확보와 정당성 공고화\\
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{자체개혁은 가능한가?} 
+\begin{enumerate}
+\item 독재자는 스스로 개혁할 수 있을까? 
+\item 독재자에게 개혁은 losers\\ \pause
+개혁은 많은 이에게 혜택이지만 독재자에게는 손해 \pause
+\end{enumerate}
+\begin{enumerate}
+\item 개혁이 성공하려면 권력이 축소돼야
+\item 독재자의 개혁약속은 신뢰성결여
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{국가의 붕괴} 
+\begin{itemize}
+\item  1960년대 독립 그러나 중앙권력취악 \pause
+\begin{itemize}
+\item 정치권력 집중 지속 
+정치적 반대세력불용
+\item 경제수탈지속 \pause
+\end{itemize}
+\item 경제발전 실패
+\item 민주화 실패
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{독재와 성장} 
+\begin{itemize}
+\item 언제 가능한가? 
+\item 박정희 모델 \\
+\item 전략적 자원배분: 생산성 높은 부문 집중투자\\
+\item 소련의 전략
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{카리브해의 번영} 
+\begin{itemize}
+\item 카리브해 지역(쿠바, 바바도스): 설탕부문투자
+\item 설탕수출 고소득 창출
+\item 설탕수요의 불안이 지배계급위협
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{소련전략} 
+\begin{itemize}
+\item 1928-1970년대 
+\item 경제/정치제도 고도로  추출적
+\item 국가가 강압적으로 농업자원를 산업화에 투자
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{박정희모델} 
+\begin{itemize}
+\item 다소의 포용적 제도 수용
+\item 권력독점이 확실한 상황에서 부분적 포용제도
+\item 또는 특정한 결정적 국면(critical junctures)
+\item 1961년 군사쿠테타 장악
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{박정희모델은 어떻게 가능했는가?} 
+\begin{itemize}
+\item 경제제도가 포용성 확대됨에 소득분배 개선
+\item 지배집단은 민주화 수용
+\item 미국의 독재연장 반대
+\item 1992년 타협적 개혁(노태우+김영삼)
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%% 
